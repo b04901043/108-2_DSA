@@ -1,24 +1,22 @@
 #include <iostream>
 using namespace std;
-
 #define ALPHABET_SIZE (26)
+
 struct TrieNode 
 { 
     struct TrieNode *children[ALPHABET_SIZE]; 
-  
     struct TrieNode *father[18];
     int  depth;
 }; 
 
 struct TrieNode *getNode(void) 
 { 
-    struct TrieNode *pNode =  new TrieNode; 
-  
+    struct TrieNode *pNode =  new TrieNode;
     pNode->depth = 0;
 
     for (int i = 0; i < ALPHABET_SIZE; i++) 
         pNode->children[i] = NULL; 
-  
+
     return pNode; 
 };
 
@@ -26,17 +24,16 @@ struct TrieNode *insert(struct TrieNode *root, char key)
 { 
 	struct TrieNode *pCrawl = root; 
 
-	int index = key - 'a'; //store index of a=0 b=1
-   // cout<<index<<endl;
-        if (!pCrawl->children[index]) {
-            pCrawl->children[index] = getNode(); 
-          //  cout<<"get new node"<<endl;
-        }
-   // cout<<pCrawl<<"-->";
+	int index = key - 'a';
+
+    if (!pCrawl->children[index]) {
+        pCrawl->children[index] = getNode(); 
+    }
+    else return pCrawl->children[index];
+
     pCrawl->children[index]->depth = (pCrawl->depth)+1;
     pCrawl->children[index]->father[0] = pCrawl;
     pCrawl = pCrawl->children[index]; 
-
     
     pCrawl->father[1] = pCrawl->father[0]->father[0];
     pCrawl->father[2] = pCrawl->father[1]->father[1];
@@ -56,10 +53,9 @@ struct TrieNode *insert(struct TrieNode *root, char key)
     pCrawl->father[16] = pCrawl->father[15]->father[15];
     pCrawl->father[17] = pCrawl->father[16]->father[16];
 
-
     return pCrawl;
 };
-int LCP(struct TrieNode *com1,struct TrieNode *com2){
+int LCP(struct TrieNode *com1, struct TrieNode *com2){
 	int a,b,c;
     a=com1->depth - com2->depth;
     c=0;
@@ -113,12 +109,10 @@ int main()
     	cin>>j>>ch1;
     	Triedata[i] = insert(Triedata[j],ch1); 
     }
-
     int test_n;
     cin>>test_n;
     for(int i=0;i<test_n;i++){
     	cin>>j>>k;
-
     	cout<<LCP(Triedata[j],Triedata[k])<<'\n';
     }
 

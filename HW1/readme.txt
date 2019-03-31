@@ -6,5 +6,6 @@ v5 TLE 36points
 v6 iterator測試
 v7 TLE 52points
 v8 pass array by reference TLE 92points pass~~~
+v9 v8改善 加上輸出輸入優化 並取消endl 未上傳測試
 
 Ex3 執行方法： ./Ex3 input_003.txt output.txt
