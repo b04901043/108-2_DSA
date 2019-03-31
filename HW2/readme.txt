@@ -6,5 +6,6 @@ vt1 v2改造上傳版 80分
 vt2 改造但10分
 vt3 仍然為80分
 vt4 改正ancestor就好了3.4s 72mb
+vt5 利用printf scanf輸出輸入 較慢
 
 執行方法： ./檔名 input.txt
